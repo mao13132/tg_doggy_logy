@@ -3,7 +3,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
 
-from settings import LOGO
+from settings import LOGO, END_MSG
 from src.business.filter_answer.filter_answer import filter_answer
 from src.business.questions.questions import QUESTIONS
 from src.telegram.keyboard.keyboards import Admin_keyb
@@ -48,6 +48,15 @@ async def add_question(message: Message, state: FSMContext):
     res_add = BotDB.add_or_update_question(id_user, quest_number, question, answer)
 
     next_quest = quest_number + 1
+
+    if next_quest > len(QUESTIONS):
+        await state.finish()
+
+        keyb = None
+
+        await Sendler_msg().sendler_photo_message(message, LOGO, END_MSG, keyb)
+
+        return True
 
     if QUESTIONS[next_quest]['keyboard']:
         keyb = QUESTIONS[next_quest]['keyboard'](quest_number)

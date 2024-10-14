@@ -6,6 +6,7 @@
 # 1.0       2023    Initial Version
 #
 # ---------------------------------------------
+from src.business.filter_answer.date_filter import date_filter
 from src.utils.logger._logger import logger_msg
 
 from re import search
@@ -29,6 +30,23 @@ async def filter_answer(filter_answer, answer):
 
         if 'Мужской' in answer or 'Женский' in answer:
             return True
+
+    elif not filter_answer:
+        return True
+
+    elif filter_answer == 'text':
+        if str(answer).isdigit():
+            return False
+
+        if len(answer) <= 2:
+            return False
+
+        return True
+
+    elif filter_answer == 'date':
+        res_filter = await date_filter(answer)
+
+        return res_filter
 
     else:
         error_ = f'Фильтр не задан для "{filter_answer}"'
