@@ -25,9 +25,16 @@ async def filter_answer(filter_answer, answer):
         match = search(regular_, answer)
 
         return match
+    elif filter_answer == 'sex':
+
+        if 'Мужской' in answer or 'Женский' in answer:
+            return True
+
     else:
         error_ = f'Фильтр не задан для "{filter_answer}"'
 
         logger_msg(error_)
 
         return False
+
+    return False

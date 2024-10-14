@@ -21,9 +21,9 @@ def registration_calls(dp):
 async def main():
     bot_start = Core()
 
-    registration_state(bot_start.dp)
     registration_calls(bot_start.dp)
     registration_all_handlers(bot_start.dp)
+    registration_state(bot_start.dp)
 
     try:
         await bot_start.dp.start_polling()

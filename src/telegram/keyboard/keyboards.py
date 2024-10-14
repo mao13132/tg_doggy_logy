@@ -24,3 +24,15 @@ class Admin_keyb:
         self._start_key.add(InlineKeyboardButton(text=f'⬅️ Назад', callback_data=f'back-quest_{quest_number}'))
 
         return self._start_key
+
+    @staticmethod
+    def sex(quest_number):
+        _start_key = InlineKeyboardMarkup(row_width=2)
+
+        _start_key.add(InlineKeyboardButton(text=f'Мужской', callback_data=f'sex_Мужской'))
+
+        _start_key.insert(InlineKeyboardButton(text=f'Женский', callback_data=f'sex_Женский'))
+
+        _start_key.add(InlineKeyboardButton(text=f'⬅️ Назад', callback_data=f'back-quest_{quest_number}'))
+
+        return _start_key

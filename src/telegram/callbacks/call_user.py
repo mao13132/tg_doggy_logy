@@ -7,7 +7,7 @@ from src.business.start_one.start_one import start_one
 from src.telegram.sendler.sendler import *
 
 from src.telegram.keyboard.keyboards import *
-from src.telegram.state.states import States
+from src.telegram.state.states import States, add_question
 
 
 async def over_state(call: types.CallbackQuery, state: FSMContext):
@@ -39,10 +39,26 @@ async def start_question(call: types.CallbackQuery, state: FSMContext):
     return True
 
 
-async def back_quest(call: types.CallbackQuery, state: FSMContext):
+async def sex_(call: types.CallbackQuery, state: FSMContext):
     await Sendler_msg.log_client_call(call)
 
-    # TODO выбор клавиатуры на 1 вопрос и если есть клавиатура
+    try:
+        _, sex = str(call.data).split('_')
+
+    except Exception as es:
+        print(f'Ошибка при разборе sex_ {es}')
+
+        return False
+
+    call.message.text = sex
+
+    await add_question(call.message, state)
+
+    return True
+
+
+async def back_quest(call: types.CallbackQuery, state: FSMContext):
+    await Sendler_msg.log_client_call(call)
 
     try:
         _, quest_number = str(call.data).split('_')
@@ -62,6 +78,9 @@ async def back_quest(call: types.CallbackQuery, state: FSMContext):
     else:
         keyb = Admin_keyb().back_question(quest_number - 1)
 
+    if QUESTIONS[quest_number]['keyboard']:
+        keyb = QUESTIONS[quest_number]['keyboard'](quest_number - 1)
+
     _msg = QUESTIONS[quest_number]['text']
 
     await Sendler_msg().new_sendler_photo_call(call, LOGO, _msg, keyb)
@@ -77,3 +96,5 @@ def register_callbacks(dp: Dispatcher):
     dp.register_callback_query_handler(over_state, text='over_state', state='*')
 
     dp.register_callback_query_handler(back_quest, text_contains='back-quest_', state='*')
+
+    dp.register_callback_query_handler(sex_, text_contains='sex_', state='*')

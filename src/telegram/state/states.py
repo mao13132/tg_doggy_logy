@@ -34,6 +34,9 @@ async def add_question(message: Message, state: FSMContext):
 
     if not is_bad:
 
+        if QUESTIONS[quest_number]['keyboard']:
+            keyb = QUESTIONS[quest_number]['keyboard'](quest_number - 1)
+
         error_ = QUESTIONS[quest_number]['error']
 
         await Sendler_msg().sendler_photo_message(message, LOGO, error_, keyb)
@@ -42,9 +45,12 @@ async def add_question(message: Message, state: FSMContext):
 
     question = QUESTIONS[quest_number]['title']
 
+    res_add = BotDB.add_or_update_question(id_user, quest_number, question, answer)
+
     next_quest = quest_number + 1
 
-    res_add = BotDB.add_or_update_question(id_user, quest_number, question, answer)
+    if QUESTIONS[next_quest]['keyboard']:
+        keyb = QUESTIONS[next_quest]['keyboard'](quest_number)
 
     quest_text = QUESTIONS[next_quest]['text']
 
