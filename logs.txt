@@ -1,1 +1,0 @@
-_logger.py:15 #ERROR    [2024-10-14 Monday 16:20:59] - root - Logger: Ошибка при формирование отчета: "'module' object is not callable"

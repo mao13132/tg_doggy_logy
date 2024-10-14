@@ -27,6 +27,6 @@ def get_years(questions_user):
     if full_years == 0:
         count_month = (date_now - date_birthday).days // 30
 
-        full_years = f"{count_month} месяца"
+        full_years = f"{count_month} месяца(ев)"
 
     return str(full_years)

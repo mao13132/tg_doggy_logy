@@ -9,7 +9,7 @@ class Admin_keyb:
     def start_keyb(self, id_user):
         self._start_key = InlineKeyboardMarkup(row_width=1)
 
-        self._start_key.add(InlineKeyboardButton(text=f'🐼 Начать опрос', callback_data='start_question'))
+        self._start_key.add(InlineKeyboardButton(text=f'🐾 Начать опрос', callback_data='start_question'))
 
         if str(id_user) in ADMIN:
             self._start_key.add(InlineKeyboardButton(text=f'📑 Получить отчет', callback_data='get_report'))
