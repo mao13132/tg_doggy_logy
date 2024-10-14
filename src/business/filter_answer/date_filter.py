@@ -36,6 +36,14 @@ def date_filter(answer):
     if result:
         return result
 
+    try:
+        result = datetime.strptime(answer, "%d,%m,%Y")
+    except:
+        pass
+
+    if result:
+        return result
+
     return False
 
 
