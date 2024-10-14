@@ -17,3 +17,10 @@ class Admin_keyb:
         self._start_key.add(InlineKeyboardButton(text=f'⬅️ Назад', callback_data='over_state'))
 
         return self._start_key
+
+    def back_question(self, quest_number):
+        self._start_key = InlineKeyboardMarkup(row_width=1)
+
+        self._start_key.add(InlineKeyboardButton(text=f'⬅️ Назад', callback_data=f'back-quest_{quest_number}'))
+
+        return self._start_key

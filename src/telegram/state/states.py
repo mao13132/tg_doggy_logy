@@ -6,6 +6,7 @@ from aiogram.types import Message
 from settings import LOGO
 from src.business.filter_answer.filter_answer import filter_answer
 from src.business.questions.questions import QUESTIONS
+from src.telegram.keyboard.keyboards import Admin_keyb
 from src.telegram.sendler.sendler import Sendler_msg
 
 from src.telegram.bot_core import BotDB
@@ -29,8 +30,9 @@ async def add_question(message: Message, state: FSMContext):
 
     is_bad = await filter_answer(filter_, answer)
 
+    keyb = Admin_keyb().back_question(quest_number)
+
     if not is_bad:
-        keyb = None
 
         error_ = QUESTIONS[quest_number]['error']
 
@@ -48,8 +50,6 @@ async def add_question(message: Message, state: FSMContext):
 
     async with state.proxy() as data:
         data['quest_number'] += 1
-
-    keyb = None
 
     await Sendler_msg().sendler_photo_message(message, LOGO, quest_text, keyb)
 
