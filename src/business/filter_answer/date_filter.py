@@ -9,7 +9,7 @@
 from datetime import datetime
 
 
-async def date_filter(answer):
+def date_filter(answer):
     result = False
 
     try:

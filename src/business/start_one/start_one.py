@@ -35,8 +35,8 @@ async def start_one(message: Message, state: FSMContext):
 
     await Sendler_msg.log_client_message(message)
 
-    keyb = Admin_keyb().start_keyb()
+    keyb = Admin_keyb().start_keyb(id_user)
 
-    await Sendler_msg().new_sendler_photo_message(message, LOGO, START_MESSAGE, keyb)
+    await Sendler_msg().sendler_photo_message(message, LOGO, START_MESSAGE, keyb)
 
     return True

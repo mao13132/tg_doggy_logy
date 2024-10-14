@@ -134,6 +134,34 @@ class BotDB:
 
             return True
 
+    def get_all_users(self):
+        try:
+            result = self.cursor.execute(f"SELECT * FROM users")
+
+            response = result.fetchall()
+        except Exception as es:
+            error_ = f'SQL ошибка при get_all_users "{es}"'
+
+            logger_msg(error_)
+
+            return False
+
+        return response
+
+    def get_all_questions(self):
+        try:
+            result = self.cursor.execute(f"SELECT * FROM questions")
+
+            response = result.fetchall()
+        except Exception as es:
+            error_ = f'SQL ошибка при get_all_questions "{es}"'
+
+            logger_msg(error_)
+
+            return False
+
+        return response
+
     def close(self):
         self.conn.close()
         print('Отключился от SQL BD')

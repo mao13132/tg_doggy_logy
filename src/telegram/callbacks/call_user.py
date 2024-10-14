@@ -2,6 +2,7 @@ from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
 
 from settings import LOGO
+from src.business.get_report.get_report_call import get_report_call
 from src.business.questions.questions import QUESTIONS
 from src.business.start_one.start_one import start_one
 from src.telegram.sendler.sendler import *
@@ -90,6 +91,28 @@ async def back_quest(call: types.CallbackQuery, state: FSMContext):
     return True
 
 
+async def get_report(call: types.CallbackQuery, state: FSMContext):
+    await Sendler_msg.log_client_call(call)
+
+    await state.finish()
+
+    id_user = call.message.chat.id
+
+    msg_ = f'⚠️ Формирование отчета запущено, я пришлю его как он будет готов, ожидайте...'
+
+    keyb = Admin_keyb().back_admin()
+
+    await Sendler_msg().sendler_photo_call(call, LOGO, msg_, keyb)
+
+    import asyncio
+
+    loop = asyncio.get_event_loop()
+
+    await get_report_call(call.bot, id_user, loop)
+
+    return True
+
+
 def register_callbacks(dp: Dispatcher):
     dp.register_callback_query_handler(start_question, text_contains='start_question')
 
@@ -98,3 +121,5 @@ def register_callbacks(dp: Dispatcher):
     dp.register_callback_query_handler(back_quest, text_contains='back-quest_', state='*')
 
     dp.register_callback_query_handler(sex_, text_contains='sex_', state='*')
+
+    dp.register_callback_query_handler(get_report, text_contains='get_report', state='*')

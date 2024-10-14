@@ -44,7 +44,7 @@ async def filter_answer(filter_answer, answer):
         return True
 
     elif filter_answer == 'date':
-        res_filter = await date_filter(answer)
+        res_filter = date_filter(answer)
 
         return res_filter
 
