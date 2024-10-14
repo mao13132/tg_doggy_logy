@@ -1,0 +1,80 @@
+base_events.py:1771 #ERROR    [2024-10-14 Monday 09:27:11] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=NameError("name 'BotDB' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\telegram\handlers\users.py", line 12, in start
+    result = await start_one(message, state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\business\start_one\start_one.py", line 24, in start_one
+    await Sendler_msg.log_client_message(message)
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\telegram\sendler\sendler.py", line 195, in log_client_message
+    BotDB.last_update(id_user)
+    ^^^^^
+NameError: name 'BotDB' is not defined
+base_events.py:1771 #ERROR    [2024-10-14 Monday 09:31:09] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=TypeError("BotDB.edit_user() missing 1 required positional argument: 'id_user'")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\telegram\handlers\users.py", line 12, in start
+    result = await start_one(message, state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\business\start_one\start_one.py", line 24, in start_one
+    await Sendler_msg.log_client_message(message)
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\telegram\sendler\sendler.py", line 196, in log_client_message
+    BotDB.edit_user('last_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'), id_user)
+TypeError: BotDB.edit_user() missing 1 required positional argument: 'id_user'
+base_events.py:1771 #ERROR    [2024-10-14 Monday 09:31:26] - asyncio - Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<Dispatcher._process_polling_updates() done, defined at C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py:407> exception=TypeError("BotDB.edit_user() missing 1 required positional argument: 'id_user'")>
+Traceback (most recent call last):
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\venv\Lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\telegram\handlers\users.py", line 12, in start
+    result = await start_one(message, state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\business\start_one\start_one.py", line 24, in start_one
+    await Sendler_msg.log_client_message(message)
+  File "C:\Users\user\PycharmProjects\tg_doggy_logy\src\telegram\sendler\sendler.py", line 196, in log_client_message
+    BotDB.edit_user('last_time', datetime.now().strftime('%Y-%m-%d %H:%M:%S'), id_user)
+TypeError: BotDB.edit_user() missing 1 required positional argument: 'id_user'
+_logger.py:15 #ERROR    [2024-10-14 Monday 09:32:14] - root - Logger: SQL Не могу отредактировать пользователя "1422194909" поле: "last_time" значение: "2024-10-14 09:32:12"
