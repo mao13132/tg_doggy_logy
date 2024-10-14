@@ -25,7 +25,7 @@ async def start_question(call: types.CallbackQuery, state: FSMContext):
 
     keyb = Admin_keyb().back_start_menu()
 
-    quest_number = 0
+    quest_number = 1
 
     _msg = QUESTIONS[quest_number]['text']
 

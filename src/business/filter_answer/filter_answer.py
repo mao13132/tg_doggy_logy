@@ -18,6 +18,13 @@ async def filter_answer(filter_answer, answer):
         match = search(regular_, answer)
 
         return match
+    elif filter_answer == 'email':
+        regular_ = r'^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))' \
+                   r'@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$'
+
+        match = search(regular_, answer)
+
+        return match
     else:
         error_ = f'Фильтр не задан для "{filter_answer}"'
 

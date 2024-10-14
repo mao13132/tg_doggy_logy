@@ -51,14 +51,15 @@ class BotDB:
 
         try:
             self.cursor.execute(f"CREATE TABLE IF NOT EXISTS "
-                                f"chatgpt_history (id_pk INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                f"questions (id_pk INTEGER PRIMARY KEY AUTOINCREMENT, "
                                 f"id_user TEXT, "
-                                f"text TEXT, "
-                                f"date DATETIME, "
+                                f"count_quest NUMBER, "
+                                f"question TEXT, "
+                                f"answer TEXT, "
                                 f"other TEXT)")
 
         except Exception as es:
-            logger_msg(f'SQL исключение check_table chatgpt_history {es}')
+            print(f'SQL исключение check_table questions {es}')
 
         return True
 
@@ -107,6 +108,31 @@ class BotDB:
             logger_msg(f'SQL ERROR: Не смог изменить пользователя"{id_user}" поле: "{key}" значение: "{value}" "{es}"')
 
             return False
+
+    def add_or_update_question(self, id_user, count_quest, question, answer):
+
+        result = self.cursor.execute(f"SELECT * FROM questions WHERE id_user='{id_user}' AND "
+                                     f"count_quest='{count_quest}'")
+
+        response = result.fetchall()
+
+        if not response:
+            self.cursor.execute("INSERT OR IGNORE INTO questions ('id_user', 'count_quest', 'question', "
+                                "'answer') VALUES (?,?,?,?)",
+                                (id_user, count_quest, question, answer))
+
+            self.conn.commit()
+
+            return True
+
+        else:
+
+            self.cursor.execute(f"UPDATE questions SET question='{question}', answer='{answer}' "
+                                f"WHERE id_user = '{id_user}' AND count_quest='{count_quest}'")
+
+            self.conn.commit()
+
+            return True
 
     def close(self):
         self.conn.close()
