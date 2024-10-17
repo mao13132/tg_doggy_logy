@@ -6,6 +6,8 @@
 # 1.0       2023    Initial Version
 #
 # ---------------------------------------------
+from datetime import datetime
+
 from src.business.filter_answer.date_filter import date_filter
 from src.utils.logger._logger import logger_msg
 
@@ -34,6 +36,12 @@ async def filter_answer(filter_answer, answer):
     elif not filter_answer:
         return True
 
+    elif filter_answer == 'fio':
+        split_fio = answer.split()
+
+        if len(split_fio) == 3:
+            return True
+
     elif filter_answer == 'text':
         if str(answer).isdigit():
             return False
@@ -45,6 +53,11 @@ async def filter_answer(filter_answer, answer):
 
     elif filter_answer == 'date':
         res_filter = date_filter(answer)
+
+        date_now = datetime.now()
+
+        if date_now < res_filter:
+            return False
 
         return res_filter
 

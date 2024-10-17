@@ -26,4 +26,4 @@ LOGO = r'src/telegram/media/logo.jpg'
 
 LOGGER = True
 
-COUNT_QUEST_DATE = 6
+COUNT_QUEST_DATE = 7
