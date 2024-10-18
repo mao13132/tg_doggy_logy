@@ -5,6 +5,7 @@ from aiogram.types import Message
 
 from settings import LOGO, END_MSG
 from src.business.filter_answer.filter_answer import filter_answer
+from src.business.finish_send_admin.finish_send_admin import finish_send_admin
 from src.business.questions.questions import QUESTIONS
 from src.telegram.keyboard.keyboards import Admin_keyb
 from src.telegram.sendler.sendler import Sendler_msg
@@ -55,6 +56,8 @@ async def add_question(message: Message, state: FSMContext):
         keyb = None
 
         await Sendler_msg().sendler_photo_message(message, LOGO, END_MSG, keyb)
+
+        await finish_send_admin(message)
 
         return True
 

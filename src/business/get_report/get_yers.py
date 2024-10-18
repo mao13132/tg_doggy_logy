@@ -12,14 +12,7 @@ from settings import COUNT_QUEST_DATE
 from src.business.filter_answer.date_filter import date_filter
 
 
-def get_years(questions_user):
-    try:
-        date_birthday = questions_user[COUNT_QUEST_DATE]['answer']
-
-        date_birthday = date_filter(date_birthday)
-    except:
-        return 'Неизвестно'
-
+def _get_years(date_birthday):
     date_now = datetime.now()
 
     full_years = (date_now - date_birthday).days // 365
@@ -30,3 +23,16 @@ def get_years(questions_user):
         full_years = f"{count_month} месяца(ев)"
 
     return str(full_years)
+
+
+def get_years(questions_user):
+    try:
+        date_birthday = questions_user[COUNT_QUEST_DATE]['answer']
+
+        date_birthday = date_filter(date_birthday)
+    except:
+        return 'Неизвестно'
+
+    full_years = _get_years(date_birthday)
+
+    return full_years

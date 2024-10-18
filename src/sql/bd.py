@@ -148,6 +148,22 @@ class BotDB:
 
         return response
 
+    def get_users_by_id(self, id_user):
+        try:
+            result = self.cursor.execute(f"SELECT * FROM users WHERE id_user = '{id_user}'")
+
+            response = result.fetchall()
+
+            response = response[0]
+        except Exception as es:
+            error_ = f'SQL ошибка при get_users_by_id "{es}"'
+
+            logger_msg(error_)
+
+            return False
+
+        return response
+
     def get_all_questions(self):
         try:
             result = self.cursor.execute(f"SELECT * FROM questions")
@@ -155,6 +171,20 @@ class BotDB:
             response = result.fetchall()
         except Exception as es:
             error_ = f'SQL ошибка при get_all_questions "{es}"'
+
+            logger_msg(error_)
+
+            return False
+
+        return response
+
+    def get_questions_by_id(self, id_user):
+        try:
+            result = self.cursor.execute(f"SELECT * FROM questions WHERE id_user = '{id_user}'")
+
+            response = result.fetchall()
+        except Exception as es:
+            error_ = f'SQL ошибка при get_questions_by_id "{es}"'
 
             logger_msg(error_)
 
