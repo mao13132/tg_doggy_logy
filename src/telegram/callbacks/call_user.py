@@ -30,7 +30,9 @@ async def start_question(call: types.CallbackQuery, state: FSMContext):
 
     _msg = QUESTIONS[quest_number]['text']
 
-    await Sendler_msg().new_sendler_photo_call(call, LOGO, _msg, keyb)
+    img = QUESTIONS[quest_number]['img']
+
+    await Sendler_msg().sendler_photo_call(call, img, _msg, keyb)
 
     await States.add_question.set()
 
@@ -84,7 +86,9 @@ async def back_quest(call: types.CallbackQuery, state: FSMContext):
 
     _msg = QUESTIONS[quest_number]['text']
 
-    await Sendler_msg().new_sendler_photo_call(call, LOGO, _msg, keyb)
+    img = QUESTIONS[quest_number]['img']
+
+    await Sendler_msg().sendler_photo_call(call, img, _msg, keyb)
 
     await States.add_question.set()
 

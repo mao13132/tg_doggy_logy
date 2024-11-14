@@ -66,10 +66,12 @@ async def add_question(message: Message, state: FSMContext):
 
     quest_text = QUESTIONS[next_quest]['text']
 
+    img = QUESTIONS[next_quest]['img']
+
     async with state.proxy() as data:
         data['quest_number'] += 1
 
-    await Sendler_msg().sendler_photo_message(message, LOGO, quest_text, keyb)
+    await Sendler_msg().sendler_photo_message(message, img, quest_text, keyb)
 
     return True
 
